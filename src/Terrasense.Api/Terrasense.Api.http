@@ -1,0 +1,6 @@
+@Terrasense.Api_HostAddress = http://localhost:5221
+
+GET {{Terrasense.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{46CDC9BE-05F9-4C13-9768-156B6A1DE64D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terrasense.Api", "src\Terrasense.Api\Terrasense.Api.csproj", "{4B42A949-D2EB-4CBA-85F2-5F56F233748E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terrasense.Domain", "src\Terrasense.Domain\Terrasense.Domain.csproj", "{0581B296-B10C-46FA-91F7-55B776DCC2C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terrasense.Infrastructure", "src\Terrasense.Infrastructure\Terrasense.Infrastructure.csproj", "{A77C62F8-7A41-40D4-93E3-B42D576BA0BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B42A949-D2EB-4CBA-85F2-5F56F233748E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B42A949-D2EB-4CBA-85F2-5F56F233748E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B42A949-D2EB-4CBA-85F2-5F56F233748E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B42A949-D2EB-4CBA-85F2-5F56F233748E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0581B296-B10C-46FA-91F7-55B776DCC2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0581B296-B10C-46FA-91F7-55B776DCC2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0581B296-B10C-46FA-91F7-55B776DCC2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0581B296-B10C-46FA-91F7-55B776DCC2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A77C62F8-7A41-40D4-93E3-B42D576BA0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A77C62F8-7A41-40D4-93E3-B42D576BA0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A77C62F8-7A41-40D4-93E3-B42D576BA0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A77C62F8-7A41-40D4-93E3-B42D576BA0BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B42A949-D2EB-4CBA-85F2-5F56F233748E} = {46CDC9BE-05F9-4C13-9768-156B6A1DE64D}
+		{0581B296-B10C-46FA-91F7-55B776DCC2C6} = {46CDC9BE-05F9-4C13-9768-156B6A1DE64D}
+		{A77C62F8-7A41-40D4-93E3-B42D576BA0BD} = {46CDC9BE-05F9-4C13-9768-156B6A1DE64D}
+	EndGlobalSection
+EndGlobal

@@ -7,7 +7,7 @@ public class TerrasenseContext(DbContextOptions<TerrasenseContext> options) : Db
 {
 
   // Default schema for the database context
-  private const string DefaultSchema = "dbo";
+  private const string DefaultSchema = "terrasense";
 
 
   // DbSet to represent the collection of Sensor Readings in our database

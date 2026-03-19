@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Terrasense.Domain.Models;
+using Terrasense.Infrastructure.Interfaces;
 
-namespace Terrasense.Api;
+namespace Terrasense.Api.Endpoints;
 
 public static class TerrasenseEndpoints
 {
@@ -13,13 +14,16 @@ public static class TerrasenseEndpoints
 
   }
 
-  private static IResult GetSensorReadings()
+  private static async Task<IResult> GetSensorReadings(ITerrasenseService service, string? sensorId, DateTime? from = null, DateTime? to = null)
   {
-    return null; //placeholder
+    var result = await service.GetReadingsAsync(sensorId, from, to);
+    return Results.Ok(result);
   }
 
-  private static IResult AddSensorReading(SensorReading reading)
+  private static async Task<IResult> AddSensorReading(ITerrasenseService service, SensorReading reading)
   {
-    return null; //placeholder
+    //Does it need [FromBody] attribute? I think it should work without it, but we can add it if needed.
+    var result = await service.AddReadingAsync(reading);
+    return Results.Created($"/api/sensor-readings/{result.Id}", result);
   }
 }

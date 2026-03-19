@@ -1,41 +1,56 @@
-var builder = WebApplication.CreateBuilder(args);
+using Terrasense.Api.Endpoints;
+using Microsoft.OpenApi.Models;
+using Terrasense.Infrastructure.Extensions;
+using Terrasense.Api.Exceptions;
+using Serilog;
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
-var app = builder.Build();
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File("logs/terrasense.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.MapOpenApi();
+  Log.Information("Starting web host");
+  var builder = WebApplication.CreateBuilder(args);
+
+  builder.Host.UseSerilog();
+  builder.Services.AddInfrastructureServices(builder.Configuration);
+  builder.Services.AddEndpointsApiExplorer();
+  builder.Services.AddSwaggerGen(c =>
+  {
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+      Title = "Test API",
+      Version = "v1",
+      Description = "A simple example ASP.NET Core Web API for managing sensor readings.",
+    });
+
+  });
+
+  builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+  builder.Services.AddProblemDetails();
+
+  var app = builder.Build();
+
+  app.UseExceptionHandler();
+  // Configure the HTTP request pipeline.
+  if (app.Environment.IsDevelopment())
+  {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+  }
+
+  app.MapTerrasenseEndpoints();
+  app.Run();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception ex)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+  Log.Fatal(ex, "Host terminated unexpectedly");
+}
+finally
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+  Log.CloseAndFlush();
 }

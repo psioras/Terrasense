@@ -1,0 +1,15 @@
+services:
+  terrasense-db:
+    image: docker.io/library/postgres:16
+    container_name: terrasense-db
+    environment:
+      POSTGRES_USER: terrasense
+      POSTGRES_PASSWORD: terrasense
+      POSTGRES_DB: terrasense
+    ports:
+      - "5432:5432"
+    volumes:
+      - terrasense-db-data:/var/lib/postgresql/data
+
+volumes:
+  terrasense-db-data:
